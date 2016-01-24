@@ -1,0 +1,4 @@
+web:    puma -C config/puma.rb
+db:     postgres -D /usr/local/var/postgres
+#worker: sidekiq -q default -q mailers
+redis:  redis-server /usr/local/etc/redis.conf
