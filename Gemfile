@@ -39,6 +39,8 @@ gem 'trailblazer-rails'
 gem 'puma'
 #gem 'newrelic_rpm'
 gem 'octokit'
+gem 'sidekiq'
+gem 'sinatra', github: 'sinatra/sinatra', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
