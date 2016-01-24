@@ -3,7 +3,7 @@ class PayloadsController < ApplicationController
 
   def create
     run Payload::Create do |_op|
-      head :created
+      head :created and return
     end
     head :bad_request
   end
