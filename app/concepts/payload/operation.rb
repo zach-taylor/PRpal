@@ -9,7 +9,7 @@ class Payload
 
     def update_status
       status = success? ? 'success' : 'failure'
-      client.create_status(repo_full_name, sha, status, context: 'peer_review')
+      client.create_status(repo_full_name, sha, status, context: 'peer-review/prpal')
     end
 
     def success?
