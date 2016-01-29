@@ -11,7 +11,7 @@ module GithubWebhookProcessor
   def create
     handle(json_body)
     head :ok
-    #raise NoMethodError.new("GithubWebhooksController##{event} not implemented")
+    # raise NoMethodError.new("GithubWebhooksController##{event} not implemented")
   end
 
   def ping(payload)
@@ -29,10 +29,9 @@ module GithubWebhookProcessor
   end
 
   def request_body
-    @request_body ||= (
-    request.body.rewind
+    @request_body ||=
+      request.body.rewind
     request.body.read
-    )
   end
 
   def json_body

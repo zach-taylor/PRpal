@@ -6,7 +6,7 @@ class PayloadsController < ApplicationController
     PayloadJob.perform_later(payload)
   end
 
-  def webhook_secret(payload)
+  def webhook_secret(_payload)
     Rails.application.secrets.github_webhook_secret
   end
 

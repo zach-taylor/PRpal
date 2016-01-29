@@ -3,10 +3,10 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-#gem 'rails', '5.0.0.beta1'
-gem "rails", github: "rails/rails"
+# gem 'rails', '5.0.0.beta1'
+gem 'rails', github: 'rails/rails'
 # Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
+# gem 'sqlite3'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -37,21 +37,23 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'trailblazer-rails'
 gem 'puma'
-#gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem 'octokit'
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra/sinatra', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  #gem 'byebug'
-  #gem 'better_errors'
+  # gem 'byebug'
+  # gem 'better_errors'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  #gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'rubocop'
 end
 
 group :development do
@@ -59,11 +61,10 @@ group :development do
 end
 
 group :test do
-  #gem 'ci_reporter_minitest'
-  #gem 'minitest-rails-capybara'
-  #gem 'mocha'
-  #gem 'parallel'
-  #gem 'selenium-webdriver'
-  #gem 'webmock'
+  # gem 'ci_reporter_minitest'
+  # gem 'minitest-rails-capybara'
+  # gem 'mocha'
+  # gem 'parallel'
+  # gem 'selenium-webdriver'
+  # gem 'webmock'
 end
-
