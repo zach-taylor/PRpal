@@ -8,6 +8,18 @@ Rails.application.routes.draw do
 
   post 'payloads/:service', to: 'payloads#create'
 
+  get 'auth/github/callback', to: 'sessions#create'
+
+  resources :repos do
+    get :sync, on: :collection
+    member do
+      put :activate
+      put :deactivate
+    end
+  end
+
+  root 'welcome#index'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

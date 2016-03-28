@@ -2,6 +2,7 @@ class Payload
   class Create < Trailblazer::Operation
     def process(params)
       @params = params
+      return invalid! if repo.nil?
       update_status unless @params['action'] == 'closed'
     end
 
@@ -40,7 +41,7 @@ class Payload
     end
 
     def assignee_login
-      issue.assignee.nil? ? nil : issue.assignee.login
+      issue.assignee&.login
     end
 
     def sha
@@ -48,7 +49,11 @@ class Payload
     end
 
     def client
-      @client ||= Octokit::Client.new(login: Rails.application.secrets.github_login, password: Rails.application.secrets.github_password)
+      @client ||= Octokit::Client.new(access_token: UserToken.new(repo).token, auto_paginate: true)
+    end
+
+    def repo
+      Repo.find_by(full_github_name: repo_full_name)
     end
   end
 end
