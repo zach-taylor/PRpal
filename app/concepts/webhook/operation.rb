@@ -16,7 +16,7 @@ module Webhook
       hook = github.create_hook(
         @repo.full_github_name,
         'web',
-        { url: builds_url, secret: Rails.application.secrets.github_webhook_secret },
+        { url: builds_url, secret: Rails.application.secrets.github_webhook_secret, content_type: 'json' },
         { events: ['pull_request', 'issue_comment'], active: true }
       )
       @repo.update(hook_id: hook.id)
