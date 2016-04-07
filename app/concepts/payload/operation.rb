@@ -10,6 +10,7 @@ class Payload
 
     def update_status
       status = success? ? 'success' : 'failure'
+      Rails.logger.info("repo=#{repo_full_name} sha=#{sha} status=#{status} pr_number=#{pr_number}")
       client.create_status(repo_full_name, sha, status, context: 'peer-review/prpal')
     end
 
