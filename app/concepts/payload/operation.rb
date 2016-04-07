@@ -17,7 +17,7 @@ class Payload
     def success?
       comments.each do |comment|
         Rails.logger.debug("comment_body=#{comment.body} user_login=#{comment.user.login}")
-        return true if comment.body.start_with?(':+1:') && comment.user.login == assignee_login
+        return true if comment.body.start_with?('👍') && comment.user.login == assignee_login
       end
       false
     end
