@@ -180,6 +180,8 @@ GEM
     representable (3.0.0)
       declarative (~> 0.0.5)
       uber (~> 0.0.15)
+    rollbar (2.8.3)
+      multi_json
     rubocop (0.39.0)
       parser (>= 2.3.0.7, < 3.0)
       powerpack (~> 0.1)
@@ -260,6 +262,7 @@ DEPENDENCIES
   pg
   puma
   rails!
+  rollbar
   rubocop
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

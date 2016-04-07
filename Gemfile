@@ -32,6 +32,7 @@ gem 'cells-slim'
 gem 'puma'
 gem 'octokit'
 gem 'omniauth-github'
+gem 'rollbar'
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra/sinatra', require: false
 gem 'skylight'
