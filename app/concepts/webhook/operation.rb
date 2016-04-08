@@ -32,4 +32,22 @@ module Webhook
       Rails.application.secrets.webhook_url
     end
   end
+
+  class Destroy < Trailblazer::Operation
+    def process(params)
+      @repo = params[:repo]
+      @token = params[:user].token
+      delete_webhook
+    end
+
+    private
+
+    def github
+      @github ||= Octokit::Client.new(access_token: @token, auto_paginate: true)
+    end
+
+    def delete_webhook
+      github.remove_hook(@repo.full_github_name, @repo.hook_id)
+    end
+  end
 end

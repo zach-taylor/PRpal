@@ -11,6 +11,7 @@ class Repo
     def process(params)
       model = Repo.find(params[:id])
       model.update(active: false)
+      Webhook::Destroy.(repo: model, user: params[:user])
     end
   end
 

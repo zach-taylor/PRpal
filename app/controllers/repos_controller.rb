@@ -10,7 +10,7 @@ class ReposController < ApplicationController
   end
 
   def activate
-    Repo::Activate.run(id: params[:id], user: current_user ) do
+    run Repo::Activate, params: params.merge(user: current_user) do
       return redirect_to repos_path, notice: 'Activation initiated.'
     end
 
@@ -18,7 +18,7 @@ class ReposController < ApplicationController
   end
 
   def deactivate
-    run Repo::Deactivate do
+    run Repo::Deactivate, params: params.merge(user: current_user) do
       return redirect_to repos_path, notice: 'Deactivation initiated.'
     end
 
