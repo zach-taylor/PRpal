@@ -1,0 +1,10 @@
+div class="ui top attached menu"
+  = link_to 'Repos', repos_path, class: 'active item'
+  a class="item" Friends
+  div class="right menu"
+    .item == concept('user/info', model)
+    div class="item"
+      div class="ui icon input"
+        input type="text" placeholder="Search...(doesn't work)"
+        i class="search link icon"
+    = link_to 'Logout', sessions_destroy_path, method: :destroy, class: 'ui item', remote: true

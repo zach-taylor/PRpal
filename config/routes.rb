@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'payloads/:service', to: 'payloads#create'
 
   get 'auth/github/callback', to: 'sessions#create'
+  delete 'sessions/destroy', to: 'sessions#destroy'
 
   resources :repos do
     get :sync, on: :collection

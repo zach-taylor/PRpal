@@ -33,6 +33,7 @@ gem 'puma'
 gem 'octokit'
 gem 'omniauth-github'
 gem 'rollbar'
+gem 'semantic-ui-sass'
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra/sinatra', require: false
 gem 'skylight'
