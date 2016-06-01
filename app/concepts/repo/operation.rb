@@ -1,16 +1,30 @@
 class Repo
   class Activate < Trailblazer::Operation
+    include Model
+    model Repo, :update
+
+    contract do
+      property :active
+    end
+
     def process(params)
-      model = Repo.find(params[:id])
-      model.update(active: true)
+      validate(active: true) { |f| f.save }
+
       Webhook::Create.(repo: model, user: params[:user])
     end
   end
 
   class Deactivate < Trailblazer::Operation
+    include Model
+    model Repo, :update
+
+    contract do
+      property :active
+    end
+
     def process(params)
-      model = Repo.find(params[:id])
-      model.update(active: false)
+      validate(active: false) { |f| f.save }
+
       Webhook::Destroy.(repo: model, user: params[:user])
     end
   end

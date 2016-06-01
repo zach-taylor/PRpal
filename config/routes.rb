@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'auth/github/callback', to: 'sessions#create'
   delete 'sessions/destroy', to: 'sessions#destroy'
 
-  resources :repos do
+  resources :repos, only: :index do
     get :sync, on: :collection
     member do
       put :activate
