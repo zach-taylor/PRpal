@@ -6,7 +6,7 @@ class UserToken
   end
 
   def user
-    @user ||= users_with_token.sample || user_with_default_token
+    @user ||= user_with_token || user_with_default_token
   end
 
   private
@@ -15,7 +15,7 @@ class UserToken
     User.new(token: Rails.application.secrets.github_token)
   end
 
-  def users_with_token
-    repo.users.where.not(token: nil)
+  def user_with_token
+    repo.users.without_token.sample
   end
 end

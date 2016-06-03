@@ -10,16 +10,24 @@ class Payload
 
     def update_status
       status = success? ? 'success' : 'failure'
-      Rails.logger.info("Status: #{status}", repo: repo_full_name, sha: sha, status: status, pr_number: pr_number, assignee: assignee_login)
+      Rails.logger.info(
+        "Status: #{status}",
+        repo: repo_full_name, sha: sha, status: status,
+        pr_number: pr_number, assignee: assignee_login
+      )
       client.create_status(repo_full_name, sha, status, context: 'peer-review/prpal')
     end
 
     def success?
       comments.each do |comment|
         Rails.logger.debug("comment_body=#{comment.body} user_login=#{comment.user.login}")
-        return true if (comment.body.start_with?('👍') || comment.body.start_with?(':+1:')) && comment.user.login == assignee_login
+        return true if start_with_plus_1?(comment.body) && comment.user.login == assignee_login && comment.user.login != author_login
       end
       false
+    end
+
+    def start_with_plus_1?(comment)
+      comment.start_with?('👍') || comment.start_with?(':+1:')
     end
 
     def comments
@@ -44,6 +52,10 @@ class Payload
 
     def assignee_login
       issue.assignee&.login
+    end
+
+    def author_login
+      issue.user&.login
     end
 
     def sha
