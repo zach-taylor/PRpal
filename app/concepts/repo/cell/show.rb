@@ -7,6 +7,10 @@ class Repo
 
       private
 
+      def github_link
+        link_to full_github_name, "https://github.com/#{full_github_name}"
+      end
+
       def active_link
         if active
           link_to 'Deactivate', deactivate_repo_path(model), method: :put
