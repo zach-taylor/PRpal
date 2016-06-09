@@ -1,9 +1,2 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  github_id: 1
-  full_github_name: MyString
-
-two:
-  github_id: 1
-  full_github_name: MyString

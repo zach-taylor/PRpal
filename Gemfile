@@ -64,6 +64,7 @@ end
 
 group :test do
   # gem 'ci_reporter_minitest'
+  gem 'minitest-spec-rails'
   gem 'mocha'
   gem 'webmock'
 end
