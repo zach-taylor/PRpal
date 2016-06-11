@@ -64,9 +64,35 @@ class RepoOperationTest < ActiveSupport::TestCase
   end
 
   describe 'Activate' do
+    it 'activates' do
+      Webhook::Create.any_instance.stubs(:process).returns(true)
+
+      _res, op = Repo::Create.run(full_github_name: 'zach-taylor/test-repo', github_id: 1)
+      id = op.model.id
+
+      res, op = Repo::Activate.run(id: id)
+
+      op.model.active.must_equal true
+    end
   end
 
   describe 'Deactivate' do
+    it 'deactivates' do
+      Webhook::Create.any_instance.stubs(:process).returns(true)
+
+      _res, op = Repo::Create.run(full_github_name: 'zach-taylor/test-repo', github_id: 1)
+      id = op.model.id
+
+      res, op = Repo::Activate.run(id: id)
+
+      op.model.active.must_equal true
+
+      Webhook::Destroy.any_instance.stubs(:process).returns(true)
+
+      res, op = Repo::Deactivate.run(id: id)
+
+      op.model.active.must_equal false
+    end
   end
 
   describe 'Sync' do

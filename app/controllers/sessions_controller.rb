@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate, only: :create
 
   def create
-    run User::FindOrCreate, params: { user: request.env['omniauth.auth'] } do |op|
+    run User::FindOrCreate, params: { user: request.env['omniauth.auth'].symbolize_keys } do |op|
       session[:user_id] = op.model.id
       return redirect_to repos_path
     end

@@ -1,12 +1,12 @@
 class User
   class FindOrCreate < Trailblazer::Operation
     def process(params)
-      user = User.find_or_initialize_by(provider: 'github', github_uid: params[:user]['uid'])
-      user.github_username = params[:user]['info']['nickname']
-      user.email = params[:user]['info']['email']
-      user.name = params[:user]['info']['name']
-      user.token = params[:user]['credentials']['token']
-      user.token_scopes = token_scopes(params[:user]['credentials']['token'])
+      user = User.find_or_initialize_by(provider: 'github', github_uid: params[:user][:uid])
+      user.github_username = params[:user][:info][:nickname]
+      user.email = params[:user][:info][:email]
+      user.name = params[:user][:info][:name]
+      user.token = params[:user][:credentials][:token]
+      user.token_scopes = token_scopes(params[:user][:credentials][:token])
       user.save
       @model = user
     end
@@ -21,4 +21,12 @@ class User
       @token_scopes ||= github(token).scopes
     end
   end
+
+  # class Create < TrailBlazer::Operation
+  #   include Model
+  #   model User, :create
+  #
+  #   def process(params)
+  #   end
+  # end
 end
