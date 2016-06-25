@@ -1,21 +1,36 @@
 class Payload
   class Create < Trailblazer::Operation
+    # contract do
+    #   property :number
+    #   property :action
+    #   property :issue do
+    #     property :number
+    #   end
+    #   property :repository do
+    #     property :full_name
+    #   end
+    # end
+
     def process(params)
       @params = params
       return invalid! if repo.nil?
-      update_status unless @params['action'] == 'closed'
+      update_status unless @params[:action] == 'closed'
     end
 
     private
 
     def update_status
       status = success? ? 'success' : 'failure'
+      log_status(status)
+      client.create_status(repo_full_name, sha, status, context: 'peer-review/prpal')
+    end
+
+    def log_status(status)
       Rails.logger.info(
         "Status: #{status}",
         repo: repo_full_name, sha: sha, status: status,
         pr_number: pr_number, assignee: assignee_login
       )
-      client.create_status(repo_full_name, sha, status, context: 'peer-review/prpal')
     end
 
     def success?
@@ -35,27 +50,23 @@ class Payload
     end
 
     def pr_number
-      @params['number'] || @params['issue']['number']
+      @params[:number] || @params[:issue][:number]
     end
 
     def repo_full_name
-      @params['repository']['full_name']
+      @params[:repository][:full_name]
     end
 
     def pull_request
       @pull_request ||= client.pull_request(repo_full_name, pr_number)
     end
 
-    def issue
-      @issue ||= client.issue(repo_full_name, pr_number)
-    end
-
     def assignee_login
-      issue.assignee&.login
+      pull_request.assignee&.login
     end
 
     def author_login
-      issue.user&.login
+      pull_request.user&.login
     end
 
     def sha
@@ -67,7 +78,7 @@ class Payload
     end
 
     def repo
-      Repo.find_by(full_github_name: repo_full_name)
+      Repo.find_by(full_github_name: repo_full_name, active: true)
     end
   end
 end

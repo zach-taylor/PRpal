@@ -1,4 +1,10 @@
 class Repo
+  class Index < Trailblazer::Operation
+    def process(params)
+      @model = params[:user].repos.order(active: :desc, full_github_name: :asc)
+    end
+  end
+
   class Activate < Trailblazer::Operation
     include Model
     model Repo, :update

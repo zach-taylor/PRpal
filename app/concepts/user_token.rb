@@ -5,11 +5,11 @@ class UserToken
     user.token
   end
 
+  private
+
   def user
     @user ||= user_with_token || user_with_default_token
   end
-
-  private
 
   def user_with_default_token
     User.new(token: Rails.application.secrets.github_token)

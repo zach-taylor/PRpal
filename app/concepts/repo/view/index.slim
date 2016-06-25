@@ -1,4 +1,4 @@
 = link_to 'Refresh Repos', sync_repos_path
 
 div class="ui relaxed divided list"
-  = cell(Repo::Cell::Show, collection: @repos).()
+  = concept('repo/cell/show', collection: model).()

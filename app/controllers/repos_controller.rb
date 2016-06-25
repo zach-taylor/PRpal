@@ -1,6 +1,8 @@
 class ReposController < ApplicationController
   def index
-    @repos = current_user.repos.order(active: :desc, full_github_name: :asc)
+    run Repo::Index, params: { user: current_user } do |op|
+      render text: concept('repo/cell/index', op.model), layout: true
+    end
   end
 
   def sync

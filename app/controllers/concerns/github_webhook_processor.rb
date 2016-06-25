@@ -15,7 +15,10 @@ module GithubWebhookProcessor
   end
 
   def ping(payload)
-    puts "[GithubWebhook::Processor] Hook ping received, hook_id: #{payload[:hook_id]}, #{payload[:zen]}"
+    logger.info(
+      '[GithubWebhook::Processor] Hook ping received',
+      hook_id: payload[:hook_id], zen: payload[:zen]
+    )
   end
 
   private

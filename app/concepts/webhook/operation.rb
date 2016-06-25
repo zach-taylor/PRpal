@@ -1,7 +1,7 @@
 module Webhook
   class Create < Trailblazer::Operation
     def process(params)
-      @repo = params[:repo]
+      @model = @repo = params[:repo]
       @token = params[:user].token
       create_webhook
     end

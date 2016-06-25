@@ -28,10 +28,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'attr_extras'
-gem 'trailblazer-rails'
-gem 'trailblazer-cells'
-gem 'cells-rails'
-gem 'cells-slim'
 gem 'net_tcp_client'
 gem 'octokit'
 gem 'omniauth-github'
@@ -42,6 +38,14 @@ gem 'sidekiq'
 gem 'sinatra', github: 'sinatra/sinatra', require: false
 gem 'skylight'
 
+# Trailblazer
+gem 'trailblazer-rails'
+gem 'trailblazer-cells'
+gem 'cells-rails'
+gem 'cells-slim'
+gem 'reform-rails'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -50,6 +54,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'foreman'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
@@ -58,13 +63,12 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :development do
-  gem 'foreman'
-end
-
 group :test do
   # gem 'ci_reporter_minitest'
+  gem 'minitest-rails-capybara', github: 'blowmage/minitest-rails-capybara'
   gem 'minitest-spec-rails'
+  #gem 'capybara_minitest_spec'
+  gem 'capybara'
   gem 'mocha'
   gem 'webmock'
 end

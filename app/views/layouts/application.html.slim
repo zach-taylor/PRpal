@@ -7,8 +7,8 @@ html
     = csrf_meta_tags
 
   body
-    == concept('nav', current_user)
-    == concept('flash', flash)
+    == cell(Layout::Cell::Nav, current_user).()
+    == cell(Layout::Cell::Flash, flash).()
     div class="ui grid container"
       div class="sixteen wide column"
         == yield

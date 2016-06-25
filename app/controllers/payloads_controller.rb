@@ -1,10 +1,11 @@
 class PayloadsController < ApplicationController
   include GithubWebhookProcessor
+
   skip_before_action :verify_authenticity_token
   skip_before_action :authenticate
 
   def handle(payload)
-    PayloadJob.perform_later(payload)
+    PayloadJob.perform_later(payload.symbolize_keys)
   end
 
   def webhook_secret(_payload)
