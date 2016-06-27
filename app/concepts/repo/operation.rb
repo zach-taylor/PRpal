@@ -65,9 +65,7 @@ class Repo
   end
 
   class Create < Trailblazer::Operation
-    builds(lambda do |params|
-      Update if Repo.find_by_github(params)
-    end)
+    builds -> (params) { Update if Repo.find_by_github(params) }
 
     include Model
     model Repo, :create

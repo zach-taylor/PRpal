@@ -1,6 +1,8 @@
 class Repo
   module Cell
     class Show < Trailblazer::Cell
+      include ActionView::Helpers::TranslationHelper
+      include ::Cell::Translation
       property :full_github_name
       property :github_id
       property :active
@@ -13,9 +15,9 @@ class Repo
 
       def active_link
         if active
-          link_to 'Deactivate', deactivate_repo_path(model), method: :put
+          link_to t('.deactivate'), deactivate_repo_path(model), method: :put
         else
-          link_to 'Activate', activate_repo_path(model), method: :put
+          link_to t('.activate'), activate_repo_path(model), method: :put
         end
       end
     end

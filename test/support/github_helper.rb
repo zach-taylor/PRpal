@@ -15,6 +15,28 @@ module GithubHelper
       )
   end
 
+  def stub_request_repos(token: 'testtoken')
+    repos_url = 'https://api.github.com/user/repos'
+
+    stub_request(:get, "#{repos_url}?per_page=100")
+      .with(
+        headers: {
+          'Authorization': "token #{token}",
+          'Accept': 'application/vnd.github.v3+json',
+          'Accept-Encoding': 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Content-Type': 'application/json',
+          'User-Agent': 'Octokit Ruby Gem 4.3.0'
+        }
+      )
+      .to_return(
+        status: 200,
+        body: file_fixture('repos.json'),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+        }
+      )
+  end
+
   def stub_request_issue_comments_1(repo_name: 'PRpal/test-repo')
     stub_request(:get, "https://api.github.com/repos/#{repo_name}/issues/1/comments?per_page=100")
       .with(

@@ -20,4 +20,26 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  login: Log In
+  logout: Log out
+
+  activerecord:
+    models:
+      repo:
+        one: Repo
+        other: Repos
+
+  repo:
+    view:
+      refresh: Refresh Repos
+      activate: Activate
+      deactivate: Deactivate
+
+  repos:
+    activate:
+      success: Activation initiated.
+      failure: Couldn't activate your repo.
+    deactivate:
+      success: Deactivation initiated.
+      failure: Couldn't deactivate your repo.
+

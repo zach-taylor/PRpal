@@ -1,7 +1,7 @@
 class ReposController < ApplicationController
   def index
     run Repo::Index, params: { user: current_user } do |op|
-      render text: concept('repo/cell/index', op.model), layout: true
+      render html: cell(Repo::Cell::Index, op.model), layout: true
     end
   end
 
@@ -13,17 +13,17 @@ class ReposController < ApplicationController
 
   def activate
     run Repo::Activate, params: params.merge(user: current_user) do
-      return redirect_to repos_path, notice: 'Activation initiated.'
+      return redirect_to repos_path, notice: t('.success')
     end
 
-    redirect_to repos_path, alert: "Couldn't activate your repo."
+    redirect_to repos_path, alert: t('.failure')
   end
 
   def deactivate
     run Repo::Deactivate, params: params.merge(user: current_user) do
-      return redirect_to repos_path, notice: 'Deactivation initiated.'
+      return redirect_to repos_path, notice: t('.success')
     end
 
-    redirect_to repos_path, alert: "Couldn't deactivate your repo."
+    redirect_to repos_path, alert: t('.failure')
   end
 end

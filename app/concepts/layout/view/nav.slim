@@ -1,5 +1,5 @@
 div class="ui top attached menu"
-  = link_to 'Repos', repos_path, class: 'active item'
+  = repos_link
   div class="right menu"
-    .item == concept('user/cell/info', model)
-    = link_to 'Logout', sessions_destroy_path, method: :delete, class: 'ui item', remote: true
+    .item == cell(User::Cell::Info, model)
+    = link_to t(:logout), sessions_destroy_path, method: :delete, class: 'ui item', remote: true
