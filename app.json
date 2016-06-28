@@ -1,0 +1,71 @@
+{
+  "name": "PRpal",
+  "description": "PRpal is a tool that enforces peer review by requiring the assignee of your pull request to give a +1.",
+  "keywords": [
+    "pull request",
+    "peer-review",
+    "github"
+  ],
+  "repository": "https://github.com/zach-taylor/PRpal",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:schema:load"
+  },
+  "env": {
+    "SECRET_KEY_BASE": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "5"
+    },
+    "RAILS_ENV": "production",
+    "RACK_ENV": "production",
+    "BUNDLE_WITHOUT": "test:development",
+    "DEPLOY_TASKS": "db:migrate",
+    "GITHUB_CLIENT_ID": {
+      "description": "Create a GitHub application and fill this in",
+      "required": true
+    },
+    "GITHUB_CLIENT_SECRET": {
+      "description": "Create a GitHub application and fill this in",
+      "required": true
+    },
+    "GITHUB_WEBHOOK_SECRET": {
+      "description": "Secret key for GitHub webhook verification",
+      "generator": "secret"
+    },
+    "ROLLBAR_ENVIRONMENT": {
+      "description": "Environment for Rollbar",
+      "value": "production"
+    },
+    "ROLLBAR_TOKEN": {
+      "description": "Token for Rollbar integration",
+      "required": true
+    },
+    "WEBHOOK_URL": {
+      "description": "URL for receiving webhook notifications; should be the app's URL + /payloads/github",
+      "required": true
+    },
+    "LOGENTRIES_TOKEN": {
+      "description": "LogEntries token for forwarding production logs",
+      "required": true
+    },
+    "SKYLIGHT_AUTHENTICATION": {
+      "description": "Skylight.io APM integration key"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "heroku-redis:hobby-dev"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-ruby"
+    },
+    {
+      "url": "https://github.com/gunpowderlabs/buildpack-ruby-rake-deploy-tasks"
+    }
+  ]
+}
