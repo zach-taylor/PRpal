@@ -1,5 +1,8 @@
 # PRpal
 
+[![CircleCI](https://circleci.com/gh/zach-taylor/PRpal.svg?style=svg)](https://circleci.com/gh/zach-taylor/PRpal)
+[![codebeat badge](https://codebeat.co/badges/cf7a44db-2e63-406d-9f87-73ea39255706)](https://codebeat.co/projects/github-com-zach-taylor-prpal)
+
 PRpal is a tool that enforces peer review by requiring the assignee
 of your pull request to give a +1.
 
