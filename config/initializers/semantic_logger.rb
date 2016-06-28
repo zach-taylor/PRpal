@@ -14,11 +14,11 @@ if Rails.env.production?
   Rails.application.config.after_initialize do
     formatter = PRpal::Formatters::Logentries.new
     Rails.application
-      .config
-      .semantic_logger
-      .add_appender(appender: :tcp,
-                    server: 'api.logentries.com:20000',
-                    ssl: true,
-                    formatter: formatter)
+         .config
+         .semantic_logger
+         .add_appender(appender: :tcp,
+                       server: 'api.logentries.com:20000',
+                       ssl: true,
+                       formatter: formatter)
   end
 end

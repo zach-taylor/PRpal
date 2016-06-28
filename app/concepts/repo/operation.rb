@@ -14,9 +14,9 @@ class Repo
     end
 
     def process(params)
-      validate(active: true) { |f| f.save }
+      validate(active: true, &:save)
 
-      Webhook::Create.(repo: model, user: params[:user])
+      Webhook::Create.call(repo: model, user: params[:user])
     end
   end
 
@@ -29,9 +29,9 @@ class Repo
     end
 
     def process(params)
-      validate(active: false) { |f| f.save }
+      validate(active: false, &:save)
 
-      Webhook::Destroy.(repo: model, user: params[:user])
+      Webhook::Destroy.call(repo: model, user: params[:user])
     end
   end
 
@@ -44,7 +44,7 @@ class Repo
 
       Repo.transaction do
         repos.each do |resource|
-          op = Repo::Create.(repo_attributes(resource.to_hash))
+          op = Repo::Create.call(repo_attributes(resource.to_hash))
           user.memberships.create!(repo: op.model)
         end
       end
@@ -79,9 +79,7 @@ class Repo
     end
 
     def process(params)
-      validate(params) do |f|
-        f.save
-      end
+      validate(params, &:save)
     end
   end
 

@@ -24,11 +24,11 @@ module GithubWebhookProcessor
   private
 
   def verify_signature
-    fail UnspecifiedWebhookSecretError unless respond_to?(:webhook_secret)
+    raise UnspecifiedWebhookSecretError unless respond_to?(:webhook_secret)
     secret = webhook_secret(json_body)
 
     signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret, request_body)
-    fail SignatureError, "Signatures didn't match!" unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
+    raise SignatureError, "Signatures didn't match!" unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
   end
 
   def request_body

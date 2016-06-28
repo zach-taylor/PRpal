@@ -3,7 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'webmock/minitest'
 require 'mocha/mini_test'
-#require 'trailblazer/rails/test/integration'
+# require 'trailblazer/rails/test/integration'
 require 'minitest/rails/capybara'
 require 'support/session_helper'
 require 'support/github_helper'

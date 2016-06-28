@@ -11,45 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208041916) do
-
+ActiveRecord::Schema.define(version: 20_160_208_041_916) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "memberships", force: :cascade do |t|
-    t.integer  "repo_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'memberships', force: :cascade do |t|
+    t.integer  'repo_id'
+    t.integer  'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_index "memberships", ["repo_id"], name: "index_memberships_on_repo_id", using: :btree
-  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
+  add_index 'memberships', ['repo_id'], name: 'index_memberships_on_repo_id', using: :btree
+  add_index 'memberships', ['user_id'], name: 'index_memberships_on_user_id', using: :btree
 
-  create_table "repos", force: :cascade do |t|
-    t.integer "github_id",                        null: false
-    t.boolean "active",           default: false, null: false
-    t.string  "full_github_name",                 null: false
-    t.integer "hook_id"
+  create_table 'repos', force: :cascade do |t|
+    t.integer 'github_id', null: false
+    t.boolean 'active', default: false, null: false
+    t.string  'full_github_name', null: false
+    t.integer 'hook_id'
   end
 
-  add_index "repos", ["github_id"], name: "index_repos_on_github_id", using: :btree
+  add_index 'repos', ['github_id'], name: 'index_repos_on_github_id', using: :btree
 
-  create_table "users", force: :cascade do |t|
-    t.string   "provider"
-    t.string   "email"
-    t.string   "name"
-    t.string   "token"
-    t.string   "token_scopes",                 array: true
-    t.string   "github_username"
-    t.integer  "github_uid",      null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+  create_table 'users', force: :cascade do |t|
+    t.string   'provider'
+    t.string   'email'
+    t.string   'name'
+    t.string   'token'
+    t.string   'token_scopes', array: true
+    t.string   'github_username'
+    t.integer  'github_uid',      null: false
+    t.datetime 'created_at',      null: false
+    t.datetime 'updated_at',      null: false
   end
 
-  add_index "users", ["github_uid"], name: "index_users_on_github_uid", using: :btree
-  add_index "users", ["token_scopes"], name: "index_users_on_token_scopes", using: :gin
+  add_index 'users', ['github_uid'], name: 'index_users_on_github_uid', using: :btree
+  add_index 'users', ['token_scopes'], name: 'index_users_on_token_scopes', using: :gin
 
-  add_foreign_key "memberships", "repos"
-  add_foreign_key "memberships", "users"
+  add_foreign_key 'memberships', 'repos'
+  add_foreign_key 'memberships', 'users'
 end

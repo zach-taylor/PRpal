@@ -70,7 +70,7 @@ class RepoOperationTest < ActiveSupport::TestCase
       _res, op = Repo::Create.run(full_github_name: 'PRpal/test-repo', github_id: 1)
       id = op.model.id
 
-      res, op = Repo::Activate.run(id: id)
+      _res, op = Repo::Activate.run(id: id)
 
       op.model.active.must_equal true
     end
@@ -83,13 +83,13 @@ class RepoOperationTest < ActiveSupport::TestCase
       _res, op = Repo::Create.run(full_github_name: 'PRpal/test-repo', github_id: 1)
       id = op.model.id
 
-      res, op = Repo::Activate.run(id: id)
+      _res, op = Repo::Activate.run(id: id)
 
       op.model.active.must_equal true
 
       Webhook::Destroy.any_instance.stubs(:process).returns(true)
 
-      res, op = Repo::Deactivate.run(id: id)
+      _res, op = Repo::Deactivate.run(id: id)
 
       op.model.active.must_equal false
     end

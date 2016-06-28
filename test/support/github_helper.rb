@@ -124,7 +124,7 @@ module GithubHelper
 
   def stub_request_webhook_delete(repo_name: 'PRpal/test-repo', hook_id: 1, token: 'testtoken')
     stub_request(:delete, "https://api.github.com/repos/#{repo_name}/hooks/#{hook_id}")
-      .with(headers: { 'Authorization': "token #{token}"})
+      .with(headers: { 'Authorization': "token #{token}" })
       .to_return(status: 204)
   end
 end

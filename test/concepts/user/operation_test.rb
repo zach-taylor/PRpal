@@ -8,7 +8,7 @@ class UserOperationTest < ActiveSupport::TestCase
       _res, op = User::FindOrCreate.run(
         user: {
           uid: 1,
-          info: { nickname: 'zach-taylor', email: 'zach@example.com', name: 'Zach Taylor'},
+          info: { nickname: 'zach-taylor', email: 'zach@example.com', name: 'Zach Taylor' },
           credentials: { token: 'testtoken' }
         }
       )

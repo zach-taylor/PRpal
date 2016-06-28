@@ -6,7 +6,7 @@ class ReposController < ApplicationController
   end
 
   def sync
-    #RepoSyncJob.perform_later(current_user)
+    # RepoSyncJob.perform_later(current_user)
     run Repo::Sync, params: { user: current_user }
     redirect_to repos_path
   end

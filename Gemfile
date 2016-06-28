@@ -45,7 +45,6 @@ gem 'cells-rails'
 gem 'cells-slim'
 gem 'reform-rails'
 
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -67,7 +66,6 @@ group :test do
   # gem 'ci_reporter_minitest'
   gem 'minitest-rails-capybara', github: 'blowmage/minitest-rails-capybara'
   gem 'minitest-spec-rails'
-  #gem 'capybara_minitest_spec'
   gem 'capybara'
   gem 'mocha'
   gem 'webmock'

@@ -4,10 +4,10 @@ class RepoCellTest < Cell::TestCase
   controller ReposController
 
   describe Repo::Cell::Show do
-    let (:repo) { Repo::Create.(full_github_name: 'PRpal/test-repo', github_id: 1).model }
+    let (:repo) { Repo::Create.call(full_github_name: 'PRpal/test-repo', github_id: 1).model }
 
     it 'display show' do
-      html = cell(Repo::Cell::Show, repo).()
+      html = cell(Repo::Cell::Show, repo).call
 
       html.must_have_content repo.full_github_name
       html.must_have_link 'Activate'
@@ -16,7 +16,7 @@ class RepoCellTest < Cell::TestCase
     it 'displays show for active repo' do
       Webhook::Create.any_instance.stubs(:process).returns(true)
       _res, op = Repo::Activate.run(id: repo.id)
-      html = cell(Repo::Cell::Show, op.model).()
+      html = cell(Repo::Cell::Show, op.model).call
 
       html.must_have_content repo.full_github_name
       html.must_have_link 'Deactivate'
@@ -24,11 +24,11 @@ class RepoCellTest < Cell::TestCase
   end
 
   describe Repo::Cell::Index do
-    let (:repo1) { Repo::Create.(full_github_name: 'PRpal/test-repo', github_id: 1).model }
-    let (:repo2) { Repo::Create.(full_github_name: 'PRpal/test-repo2', github_id: 2).model }
+    let (:repo1) { Repo::Create.call(full_github_name: 'PRpal/test-repo', github_id: 1).model }
+    let (:repo2) { Repo::Create.call(full_github_name: 'PRpal/test-repo2', github_id: 2).model }
 
     it 'displays index' do
-      html = cell(Repo::Cell::Index, [repo1, repo2]).()
+      html = cell(Repo::Cell::Index, [repo1, repo2]).call
 
       html.must_have_link 'PRpal/test-repo'
       html.must_have_link 'Activate'
