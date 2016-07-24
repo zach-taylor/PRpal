@@ -1,4 +1,4 @@
-class Repo < ActiveRecord::Base
+class Repo < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
 
