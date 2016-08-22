@@ -35,7 +35,7 @@ gem 'rails_semantic_logger'
 gem 'rollbar'
 gem 'semantic-ui-sass'
 gem 'sidekiq'
-gem 'sinatra', github: 'sinatra/sinatra', require: false
+gem 'sinatra', '2.0.0.beta2', require: false
 gem 'skylight'
 
 # Trailblazer
@@ -62,7 +62,7 @@ end
 
 group :test do
   # gem 'ci_reporter_minitest'
-  gem 'minitest-rails-capybara', github: 'blowmage/minitest-rails-capybara'
+  gem 'minitest-rails-capybara'
   gem 'minitest-spec-rails'
   gem 'capybara'
   gem 'mocha'
