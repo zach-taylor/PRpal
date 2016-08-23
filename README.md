@@ -27,9 +27,9 @@ It's simple: PRpal ensures that the assignee of your pull request has commented 
 
 ## Development
 
-1. Requirements: Postgres, Redis, rvm or rbenv
+1. Requirements: Postgres, Redis, rvm or rbenv, Heroku toolbelt
 2. Clone the repo
 3. Install the gems: `$ bundle install`
-4. Start the server: `$ foreman start`
+4. Start the server: `$ heroku local`
 5. Setup the database: `$ rails db:schema:load`
 6. Run the tests: `$ rails test`
