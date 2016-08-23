@@ -22,7 +22,6 @@
     "RAILS_ENV": "production",
     "RACK_ENV": "production",
     "BUNDLE_WITHOUT": "test:development",
-    "DEPLOY_TASKS": "db:migrate",
     "GITHUB_CLIENT_ID": {
       "description": "Create a GitHub application and fill this in",
       "required": true
@@ -55,7 +54,6 @@
       "description": "Skylight.io APM integration key"
     }
   },
-  "image": "heroku/ruby",
   "addons": [
     "heroku-postgresql:hobby-dev",
     "heroku-redis:hobby-dev"
@@ -63,9 +61,6 @@
   "buildpacks": [
     {
       "url": "https://github.com/heroku/heroku-buildpack-ruby"
-    },
-    {
-      "url": "https://github.com/gunpowderlabs/buildpack-ruby-rake-deploy-tasks"
     }
   ]
 }
