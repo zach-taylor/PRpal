@@ -1,5 +1,5 @@
 class PayloadJob < ApplicationJob
   def perform(args)
-    Payload::Create.call(args)
+    Payload::Create.run(args)
   end
 end

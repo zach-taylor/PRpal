@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  post 'payloads/:service', to: 'payloads#create'
+  post 'payloads/:service', to: 'payloads#create', defaults: { format: :json }
 
   get 'auth/github/callback', to: 'sessions#create'
   delete 'sessions/destroy', to: 'sessions#destroy'

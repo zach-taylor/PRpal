@@ -36,7 +36,7 @@ class Payload
     def success?
       comments.each do |comment|
         Rails.logger.debug("comment_body=#{comment.body} user_login=#{comment.user.login}")
-        return true if start_with_plus_1?(comment.body) && comment.user.login == assignee_login && comment.user.login != author_login
+        return true if start_with_plus_1?(comment.body) && comment.user.login == assignee_login
       end
       false
     end
@@ -78,7 +78,7 @@ class Payload
     end
 
     def repo
-      Repo.find_by(full_github_name: repo_full_name, active: true)
+      Repo.active.find_by(full_github_name: repo_full_name)
     end
   end
 end
