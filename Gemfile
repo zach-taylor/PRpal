@@ -35,7 +35,7 @@ gem 'rails_semantic_logger'
 gem 'rollbar'
 gem 'semantic-ui-sass'
 gem 'sidekiq'
-gem 'sinatra', '2.0.0.beta2', require: false
+gem 'sinatra', '2.0.0', require: false
 gem 'skylight'
 
 # Trailblazer
