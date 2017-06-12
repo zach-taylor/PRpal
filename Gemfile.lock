@@ -204,7 +204,7 @@ GEM
     representable (3.0.0)
       declarative (~> 0.0.5)
       uber (~> 0.0.15)
-    rollbar (2.13.3)
+    rollbar (2.14.1)
       multi_json
     safe_yaml (1.0.4)
     sass (3.4.22)
